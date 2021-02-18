@@ -234,6 +234,31 @@ methods: {
 }
 ```
 
+### `deviceId`
+* **Input Type:** `String`
+* **Default:** `null`
+
+With the `deviceId` you can specify which device should
+be used to initiate the stream from.
+This prop is `watched` which means if you happen to change it
+the Component will rerender / reinitialize.
+
+```html
+<qrcode-stream :deviceId="deviceId"  @init="onInit"></qrcode-stream>
+```
+```js
+data() {
+  return {
+    deviceId: "123345-45687-4231-212-321-546-84563-213"
+  }
+},
+methods: {
+  async onInit (promise) {
+    const { capabilities } = await promise
+  }
+}
+```
+
 ### `worker` <Badge text="experimental" type="error" />
 
 ::: tip

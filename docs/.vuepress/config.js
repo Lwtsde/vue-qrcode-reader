@@ -23,9 +23,8 @@ module.exports = {
         'Torch',
         'DragDrop',
         'Upload',
-        'Fallback'
+        'Fallback',
       ],
-
       '/api/': [
         'QrcodeStream',
         'QrcodeDropZone',

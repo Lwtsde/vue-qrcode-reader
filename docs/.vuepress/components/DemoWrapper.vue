@@ -13,7 +13,6 @@ import Fullscreen from './demos/Fullscreen.vue'
 import LoadingIndicator from './demos/LoadingIndicator.vue'
 import Torch from './demos/Torch.vue'
 import Validate from './demos/Validate.vue'
-
 export default {
   components: {
     DecodeAll,
@@ -25,7 +24,7 @@ export default {
     Fullscreen,
     LoadingIndicator,
     Torch,
-    Validate
+    Validate,
   },
 
   props: {

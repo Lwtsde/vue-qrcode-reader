@@ -14,7 +14,11 @@
       playsinline
     ></video>
 
-    <canvas ref="pauseFrame" v-show="!shouldScan" class="qrcode-stream-camera"></canvas>
+    <canvas
+      ref="pauseFrame"
+      v-show="!shouldScan"
+      class="qrcode-stream-camera"
+    ></canvas>
 
     <canvas ref="trackingLayer" class="qrcode-stream-overlay"></canvas>
 
@@ -45,7 +49,10 @@ export default {
         return ["auto", "rear", "front", "off"].includes(camera);
       }
     },
-
+    deviceId: {
+      type: String,
+      default: null
+    },
     torch: {
       type: Boolean,
       default: false
@@ -103,6 +110,9 @@ export default {
   },
 
   watch: {
+    deviceId() {
+      this.init();
+    },
     shouldStream(shouldStream) {
       if (!shouldStream) {
         const frame = this.cameraInstance.captureFrame();
@@ -153,7 +163,8 @@ export default {
         } else {
           this.cameraInstance = await Camera(this.$refs.video, {
             camera: this.camera,
-            torch: this.torch
+            torch: this.torch,
+            deviceId: this.deviceId
           });
 
           const capabilities = this.cameraInstance.getCapabilities();

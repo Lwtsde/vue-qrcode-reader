@@ -24,7 +24,13 @@ class Camera {
   }
 }
 
-const narrowDownFacingMode = async camera => {
+const narrowDownFacingMode = async (camera, deviceId) => {
+
+  // if deviceId is specified return it instead of auto!
+  if (deviceId != null) {
+    return deviceId;
+  }
+
   // Modern phones often have multipe front/rear cameras.
   // Sometimes special purpose cameras like the wide-angle camera are picked
   // by default. Those are not optimal for scanning QR codes but standard
@@ -64,7 +70,7 @@ const narrowDownFacingMode = async camera => {
   }
 };
 
-export default async function(videoEl, { camera, torch }) {
+export default async function(videoEl, { camera, torch, deviceId }) {
   // At least in Chrome `navigator.mediaDevices` is undefined when the page is
   // loaded using HTTP rather than HTTPS. Thus `STREAM_API_NOT_SUPPORTED` is
   // initialized with `false` although the API might actually be supported.
@@ -88,7 +94,7 @@ export default async function(videoEl, { camera, torch }) {
     video: {
       width: { min: 360, ideal: 640, max: 1920 },
       height: { min: 240, ideal: 480, max: 1080 },
-      ...(await narrowDownFacingMode(camera))
+      ...(await narrowDownFacingMode(camera, deviceId))
     }
   };
 
