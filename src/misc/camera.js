@@ -25,10 +25,9 @@ class Camera {
 }
 
 const narrowDownFacingMode = async (camera, deviceId) => {
-
   // if deviceId is specified return it instead of auto!
   if (deviceId != null) {
-    return deviceId;
+    return { deviceId };
   }
 
   // Modern phones often have multipe front/rear cameras.

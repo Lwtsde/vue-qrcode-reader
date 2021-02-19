@@ -1731,7 +1731,9 @@ var narrowDownFacingMode = /*#__PURE__*/function () {
               break;
             }
 
-            return _context.abrupt("return", deviceId);
+            return _context.abrupt("return", {
+              deviceId: deviceId
+            });
 
           case 2:
             _context.next = 4;
